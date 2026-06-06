@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | About Me</title>
+    <style>
+        /* Reusing global styles for consistency */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-top: 80px; }
+        
+        nav { position: fixed; top: 0; width: 100%; background-color: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 10%; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
+
+        /* About Layout */
+        .about-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50%;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills block */
+        .skills-section {
+            margin-top: 3rem;
+        }
+
+        .skills-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Profile Placeholder Styling */
+        .profile-img-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .profile-card {
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 280px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 2px dashed rgba(56, 189, 248, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            z-index: -1;
+            transition: transform 0.3s;
+        }
+
+        .profile-card:hover::before {
+            transform: translate(-5px, -5px);
+        }
+
+        footer { text-align: center; padding: 3rem 10%; color: var(--text-muted); border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.9rem; margin-top: 4rem;}
+
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .profile-img-container { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Dev<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="about-container">
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hello! I'm an engineering undergraduate who loves solving complex engineering puzzles. My technical interests sit firmly at the crossroads of software development, embedded computing, and intelligent data systems.
+                </p>
+                <p>
+                    I enjoy translating abstract mathematical algorithms into working code—whether that means implementing clean neural networks or configuring robust real-time automation scripts on microcontrollers. I'm always looking for ways to bridge software intelligence with hardware constraints.
+                </p>
+                <p>
+                    When I'm not coding or looking over network performance curves, I experiment with media assets and cinematic lighting structures to craft highly polished visual content.
+                </p>
+
+                <div class="skills-section">
+                    <h3>Technologies I Work With:</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Python & C++</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">IoT (ESP32 / STM32)</span>
+                        <span class="skill-tag">Network Simulation (ns-3)</span>
+                        <span class="skill-tag">HTML5 & CSS3</span>
+                        <span class="skill-tag">Edge AI / TinyML</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c:\Users\darsh\Videos \Captures\IMG_20251115_213605_489.webp">
+                <div class="profile-card">
+                    <span>[ Your Photo Here ]</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Your Name. Built from scratch with passion.</p>
+    </footer>
+
+</body>
+</html>
