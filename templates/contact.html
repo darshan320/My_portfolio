@@ -1,165 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Contact</title>
-    <style>
-        /* Reusing global styles for consistency */
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --nav-bg: rgba(15, 23, 42, 0.8);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Aryan Mehta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #070e0d;
+      --bg-panel:     #0a1512;
+      --bg-card:      #0d1c18;
+      --border:       #132e26;
+      --border-hi:    #10b981;
+      --g-start:      #10b981;
+      --g-mid:        #06c9a8;
+      --g-end:        #34d399;
+      --mint:         #6ee7b7;
+      --grad:         linear-gradient(135deg, #10b981 0%, #06c9a8 50%, #34d399 100%);
+      --grad-h:       linear-gradient(135deg, #34d399 0%, #06c9a8 50%, #10b981 100%);
+      --grad-text:    linear-gradient(90deg, #10b981 0%, #06c9a8 45%, #67e8f9 100%);
+      --glow-a:       rgba(16,185,129,0.32);
+      --glow-b:       rgba(6,201,168,0.18);
+      --dim-a:        rgba(16,185,129,0.10);
+      --dim-b:        rgba(52,211,153,0.07);
+      --white:        #edfdf8;
+      --silver:       #6ea899;
+      --muted:        #2d5246;
+      --mono:         'Space Mono', monospace;
+      --sans:         'Syne', sans-serif;
+      --radius:       4px;
+      --transition:   0.22s cubic-bezier(0.4,0,0.2,1);
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-top: 80px; }
-        
-        nav { position: fixed; top: 0; width: 100%; background-color: var(--nav-bg); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 10%; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
-        .logo span { color: var(--accent-color); }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        /* Contact Layout */
-        .contact-container {
-            max-width: 650px;
-            margin: 5rem auto;
-            padding: 0 5%;
-            text-align: center;
-        }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 25%;
-            bottom: -10px;
-            width: 50%;
-            height: 4px;
-            background-color: var(--accent-color);
-        }
+    .bg-glow { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .bg-glow::before {
+      content: ''; position: absolute;
+      top: 20%; right: -15%; width: 65vw; height: 65vw;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 60%);
+    }
+    .bg-glow::after {
+      content: ''; position: absolute;
+      bottom: -10%; left: -10%; width: 50vw; height: 50vw;
+      background: radial-gradient(ellipse, rgba(6,201,168,0.06) 0%, transparent 60%);
+    }
 
-        .contact-subtitle {
-            color: var(--text-muted);
-            margin-top: 1.5rem;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: rgba(7,14,13,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 0.9rem;
+      background: var(--grad-text); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      text-decoration: none; letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 0.78rem; color: var(--silver);
+      text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; padding-bottom: 4px; transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--grad); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--g-end); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--g-end); }
 
-        /* Form Styling */
-        form {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: left;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--silver); transition: all var(--transition); }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    /* ===== PAGE HEADER ===== */
+    .page-header { padding-top: 64px; position: relative; z-index: 1; }
+    .page-header-inner { max-width: 1200px; margin: 0 auto; padding: 4rem 2.5rem 0; }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+    .page-eyebrow {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
 
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--bg-color);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            color: var(--text-main);
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
+    .page-title {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem;
+    }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
+    .page-title em {
+      font-style: normal;
+      background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
 
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+    .page-desc { font-size: 1rem; color: var(--silver); max-width: 520px; margin-bottom: 3rem; }
 
-        .submit-btn {
-            width: 100%;
-            padding: 0.9rem;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+    /* Gradient divider */
+    .divider { height: 1px; background: linear-gradient(90deg, rgba(16,185,129,0.6), rgba(52,211,153,0.2), transparent); }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
-        }
+    /* ===== CONTACT LAYOUT ===== */
+    .contact-wrap {
+      max-width: 1200px; margin: 0 auto;
+      padding: 5rem 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative; z-index: 1;
+    }
 
-        footer { text-align: center; padding: 3rem 10%; color: var(--text-muted); border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.9rem; margin-top: 5rem;}
-    </style>
+    /* ===== LEFT: INFO PANEL ===== */
+    .contact-info {}
+
+    .info-intro {
+      font-size: 1rem; color: var(--silver); line-height: 1.8; margin-bottom: 2.5rem;
+    }
+
+    .info-intro strong {
+      background: var(--grad-text); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; text-decoration: none; color: var(--white);
+      transition: all var(--transition); position: relative; overflow: hidden;
+    }
+    .contact-item::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 2px; height: 100%;
+      background: var(--grad); opacity: 0; transition: opacity var(--transition);
+    }
+    .contact-item:hover { border-color: rgba(16,185,129,0.35); background: rgba(13,28,24,0.8); transform: translateX(4px); }
+    .contact-item:hover::before { opacity: 1; }
+
+    .ci-icon {
+      width: 38px; height: 38px; border-radius: var(--radius);
+      background: var(--dim-a); border: 1px solid rgba(16,185,129,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    .ci-body {}
+    .ci-label { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .ci-value { font-size: 0.9rem; font-weight: 600; }
+
+    /* Availability badge */
+    .avail-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.6rem 1.1rem;
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3);
+      border-radius: var(--radius);
+      font-family: var(--mono); font-size: 0.68rem; color: var(--g-end); letter-spacing: 0.1em;
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--g-start);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.4; transform:scale(0.7); } }
+
+    /* ===== RIGHT: FORM ===== */
+    .contact-form-wrap {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    /* Gradient corner glow on form card */
+    .contact-form-wrap::before {
+      content: ''; position: absolute; top: -1px; left: 0; right: 0;
+      height: 2px; background: var(--grad);
+    }
+
+    .form-title {
+      font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.01em;
+    }
+    .form-subtitle { font-size: 0.85rem; color: var(--silver); margin-bottom: 2rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .field { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.2rem; }
+
+    .field label {
+      font-family: var(--mono); font-size: 0.65rem; color: var(--silver);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background: rgba(7,14,13,0.7); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.75rem 1rem;
+      color: var(--white); font-family: var(--sans); font-size: 0.9rem;
+      outline: none; transition: border-color var(--transition), box-shadow var(--transition);
+      width: 100%; resize: none;
+    }
+
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+
+    .field input:focus, .field textarea:focus {
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.08), 0 0 16px rgba(16,185,129,0.1);
+    }
+
+    .field textarea { min-height: 120px; }
+
+    .btn-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--grad); border: none; border-radius: var(--radius);
+      color: #021a12; font-family: var(--mono); font-size: 0.8rem;
+      font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      cursor: pointer; transition: all var(--transition);
+      box-shadow: 0 0 24px var(--glow-a);
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    }
+    .btn-submit:hover {
+      background: var(--grad-h);
+      box-shadow: 0 0 40px var(--glow-a), 0 0 80px var(--glow-b);
+      transform: translateY(-2px);
+    }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-line { height: 1px; background: linear-gradient(90deg, rgba(16,185,129,0.5), rgba(52,211,153,0.15), transparent); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    footer::before {
+      content: ''; position: absolute; top: -1px; left: 2.5rem; right: 2.5rem;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--g-start), var(--g-mid), transparent);
+    }
+    .footer-copy { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-family: var(--mono); font-size: 0.68rem; color: var(--silver); text-decoration: none; letter-spacing: 0.08em; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--g-end); }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .page-eyebrow { animation: fadeUp 0.5s 0.1s both; }
+    .page-title   { animation: fadeUp 0.5s 0.22s both; }
+    .page-desc    { animation: fadeUp 0.5s 0.34s both; }
+    .contact-wrap { animation: fadeUp 0.6s 0.5s both; }
+
+    @media (max-width: 900px) {
+      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 2.5rem 4rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(7,14,13,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; padding: 2rem; gap: 1.8rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .page-header-inner { padding: 3rem 1.5rem 0; }
+      .contact-wrap { padding: 3rem 1.5rem 4rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
+<div class="bg-glow"></div>
 
-    <nav>
-        <a href="index.html" class="logo">Dev<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-    </nav>
+<nav>
+  <a href="index.html" class="nav-logo">&lt;AM/&gt;</a>
+  <button class="hamburger" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
 
-    <main class="contact-container">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="contact-subtitle">Whether you have a question, want to talk about a project collaboration, or just want to connect, feel free to drop a message!</p>
-        
-        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted! Connect a back-end handler or Formspree to make this functional.');">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" required placeholder="John Doe">
-            </div>
-            <div class="form-group">
-                <label for="email">Contact number</label>
-                <input type="" id="" required placeholder="0000000000">
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="you@example.com">
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" required placeholder="Your message here..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </main>
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">// connect.init()</p>
+    <h1 class="page-title">Let's Build Something<br><em>Together</em></h1>
+    <p class="page-desc">Open to research collaborations, internships, project discussions, and anything at the edge of hardware and intelligence.</p>
+  </div>
+  <div class="divider"></div>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Your Name. Built from scratch with passion.</p>
-    </footer>
+<div class="contact-wrap">
 
+  <!-- LEFT: Info -->
+  <div class="contact-info">
+    <p class="info-intro">
+      Whether you're a <strong>researcher</strong> exploring edge AI, a team building embedded products, or just curious about wireless systems and TinyML — I'd love to hear from you. I respond within 48 hours.
+    </p>
+
+    <div class="contact-items">
+      <a href="darshanlinganagoudra@gmail.com" class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div class="ci-body">
+          <div class="ci-label">Email</div>
+          <div class="ci-value">darshanlinganagoudra@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" target="_blank" class="contact-item">
+        <div class="ci-icon">💼</div>
+        <div class="ci-body">
+          <div class="ci-label">LinkedIn</div>
+          <div class="ci-value">linkedin.com/in/Darshan</div>
+        </div>
+      </a>
+      <a href="https://github.com/darshan320" target="_blank" class="contact-item">
+        <div class="ci-icon">⌥</div>
+        <div class="ci-body">
+          <div class="ci-label">GitHub</div>
+          <div class="ci-value">github.com/Darshan</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="avail-badge">
+      <span class="avail-dot"></span>
+      Available for opportunities — 2026
+    </div>
+  </div>
+
+  <!-- RIGHT: Form -->
+  <div class="contact-form-wrap">
+    <h2 class="form-title">Send a Message</h2>
+    <p class="form-subtitle">Fill in the details below and I'll get back to you shortly.</p>
+
+    <form>
+      <div class="form-row">
+        <div class="field">
+          <label for="fname">Name</label>
+          <input type="text" id="fname" name="name" placeholder="Your full name" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="femail">Email</label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fsubject">Subject</label>
+        <input type="text" id="fsubject" name="subject" placeholder="Research collaboration / Internship / Project idea..." />
+      </div>
+
+      <div class="field">
+        <label for="fmsg">Message</label>
+        <textarea id="fmsg" name="message" rows="5" placeholder="Tell me about your idea, project, or opportunity..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <span>Send Message</span>
+        <span>→</span>
+      </button>
+    </form>
+  </div>
+
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 Darshan S L — E &amp; C(Advanced communication Technology) Engineering</p>
+  <div class="footer-links">
+    <a href="https://github.com/darshan320" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" target="_blank">LinkedIn</a>
+    <a href="darshanlinganagoudra@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hbg').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 </body>
 </html>
