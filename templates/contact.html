@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Aryan Mehta</title>
+  <title>Darshan's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -295,20 +295,20 @@
 <div class="bg-glow"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">&lt;AM/&gt;</a>
+  <a href="index.html" class="nav-logo">&lt;Darshan&gt;</a>
   <button class="hamburger" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
-</nav>
+</nav>s
 
 <div class="page-header">
   <div class="page-header-inner">
-    <p class="page-eyebrow">// connect.init()</p>
-    <h1 class="page-title">Let's Build Something<br><em>Together</em></h1>
-    <p class="page-desc">Open to research collaborations, internships, project discussions, and anything at the edge of hardware and intelligence.</p>
+    <p class="page-eyebrow">Connect</p>
+    <h1 class="page-title">Get In Touch<br><em>With Me</em></h1>
+    <p class="page-desc">Feel free to contact me regarding projects, internships, collaborations, or any opportunities.</p>
   </div>
   <div class="divider"></div>
 </div>
@@ -318,7 +318,7 @@
   <!-- LEFT: Info -->
   <div class="contact-info">
     <p class="info-intro">
-      Whether you're a <strong>researcher</strong> exploring edge AI, a team building embedded products, or just curious about wireless systems and TinyML — I'd love to hear from you. I respond within 48 hours.
+      I am <strong>Darshan,</strong> an Electronics and Communication Engineering student passionate about web development, programming, and emerging technologies. Feel free to connect with me.
     </p>
 
     <div class="contact-items">
@@ -347,42 +347,48 @@
 
     <div class="avail-badge">
       <span class="avail-dot"></span>
-      Available for opportunities — 2026
+      Open to collaborations
     </div>
   </div>
 
   <!-- RIGHT: Form -->
   <div class="contact-form-wrap">
-    <h2 class="form-title">Send a Message</h2>
+    <h2 class="form-title">Contact Me</h2>
     <p class="form-subtitle">Fill in the details below and I'll get back to you shortly.</p>
 
-    <form>
-      <div class="form-row">
-        <div class="field">
-          <label for="fname">Name</label>
-          <input type="text" id="fname" name="name" placeholder="Your full name" autocomplete="name" />
-        </div>
-        <div class="field">
-          <label for="femail">Email</label>
-          <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email" />
-        </div>
-      </div>
+    <div class="contact-form-container">
 
+  <form action="/contact.html" method="POST">
+    
+    <div class="form-row">
       <div class="field">
-        <label for="fsubject">Subject</label>
-        <input type="text" id="fsubject" name="subject" placeholder="Research collaboration / Internship / Project idea..." />
+        <label for="fname">Name</label>
+        <input type="text" id="fname" name="name" placeholder="Your full name" autocomplete="name" required />
       </div>
-
+      
       <div class="field">
-        <label for="fmsg">Message</label>
-        <textarea id="fmsg" name="message" rows="5" placeholder="Tell me about your idea, project, or opportunity..."></textarea>
+        <label for="femail">Email</label>
+        <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email" required />
       </div>
+    </div>
 
-      <button type="submit" class="btn-submit">
-        <span>Send Message</span>
-        <span>→</span>
-      </button>
-    </form>
+    <div class="field">
+      <label for="fsubject">Subject</label>
+      <input type="text" id="fsubject" name="subject" placeholder="Research collaboration / Internship / Project idea..." required />
+    </div>
+
+    <div class="field">
+      <label for="fmsg">Message</label>
+      <textarea id="fmsg" name="message" rows="5" placeholder="Tell me about your idea, project, or opportunity..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">
+      <span>Send Message</span>
+      <span>→</span>
+    </button>
+    
+  </form>
+</div>
   </div>
 
 </div>
@@ -392,7 +398,7 @@
   <div class="footer-links">
     <a href="https://github.com/darshan320" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" target="_blank">LinkedIn</a>
-    <a href="darshanlinganagoudra@gmail.com">Email</a>
+    <a href="mailto:darshanlinganagoudra@gmail.com">Email</a>
   </div>
 </footer>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Aryan Mehta</title>
+  <title>Darshan's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -327,7 +327,7 @@
 <div class="bg-glow"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">&lt;AM/&gt;</a>
+  <a href="index.html" class="nav-logo">&lt;Darshan&gt;</a>
   <button class="hamburger" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
@@ -339,8 +339,8 @@
 <div class="page-header">
   <div class="page-header-inner">
     <p class="page-eyebrow">// profile.exe</p>
-    <h1 class="page-title">The Human Behind<br>the <em>Hardware</em></h1>
-    <p class="page-desc">Electronics engineer navigating the intersection of silicon, signals, and machine intelligence.</p>
+    <h1 class="page-title">About <em>Darshan</em></h1>
+    <p class="page-desc">Electronics and Communication Engineering student passionate about Machine Learning, Wireless Communications, Python, and emerging technologies..</p>
   </div>
   <div class="divider"></div>
 </div>
@@ -350,9 +350,8 @@
     <div class="about-grid">
       <div class="avatar-wrap">
         <div class="avatar-frame">
-          <img src="C:\Users\darsh\Videos\Captures\IMG_20251115_213605_489.webp" alt="Your Name" style="width:100%;height:100%;object-fit:cover;" />
-            <div class="avatar-icon">👤</div>
-            <p class="avatar-label">REPLACE WITH<br>PROFESSIONAL PHOTO</p>
+          <img src="{{ url_for('static', filename='profile.jpg') }}" alt="profile" style="width:100%;height:100%;object-fit:cover;" />
+
           </div>
           <div class="avatar-tag">
             <div class="avatar-tag-name">Darshan S L</div>
@@ -360,34 +359,71 @@
           </div>
         </div>
         <div class="social-strip">
-          <a href="#" class="social-btn">GitHub</a>
-          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="https://github.com/darshan320" class="social-btn">GitHub</a>
+          <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" class="social-btn">LinkedIn</a>
           <a href="#" class="social-btn">Email</a>
         </div>
       </div>
 
       <div class="bio-section">
-        <p class="bio-intro">I'm a final-year <strong>Electronics &amp; Communication Engineering</strong> student with a deep focus on building intelligence at the network edge — where microcontrollers meet machine learning and bandwidth is precious.</p>
-        <p class="bio-body">My work lives at the crossroads of three fields: embedded systems design, wireless network engineering, and applied ML research. I'm driven by a constraint-first philosophy — the best solutions squeeze maximum capability from minimum resources. That belief led me to TinyML, where I deploy compressed neural networks onto microcontrollers with kilobytes of RAM, and to network simulation, where I model real-world 5G and IoT scenarios before writing a single line of firmware.</p>
-        <p class="bio-body">Outside the lab, I actively participate in hackathons and IEEE student competitions, where rapid prototyping and cross-disciplinary thinking are rewarded. I'm also a curious reader of RF system design literature and an advocate for reproducible research practices in engineering education.</p>
+        <p class="bio-intro">I'm an Electronics & Communication Engineering student specializing in <strong>Advanced Communication Technology.</strong> I enjoy learning new technologies, solving engineering problems, and building practical projects using Python, Machine Learning, and communication systems.</p>
+        <p class="bio-body">My academic interests include Wireless Communications, Optical Fiber Communication, Machine Learning, and Data Analysis. I have been developing my programming skills using Python and exploring libraries such as NumPy, Pandas, Matplotlib, and Scikit-learn.</p>
+        <p class="bio-body">Apart from academics, I enjoy working on technical projects, learning new software tools, and improving my problem-solving abilities. I am always looking for opportunities to gain practical experience through internships, projects, and collaboration.</p>
         <div class="bio-chips">
-          <span class="chip"><span class="chip-dot"></span>KLE Technological University</span>
-          <span class="chip"><span class="chip-dot"></span>B.E. Electronics &amp; Communication</span>
-          <span class="chip"><span class="chip-dot"></span>CGPA 9.1 / 10</span>
-          <span class="chip"><span class="chip-dot"></span>Hubballi, Karnataka</span>
+          <span class="chip"><span class="chip-dot"></span>NMAM Institute of Technology, Nitte</span>
+          <span class="chip"><span class="chip-dot"></span>B.Tech Electronics &amp; Communication</span>
+          <span class="chip"><span class="chip-dot"></span>CGPA 7.7 / 10</span>
+          <span class="chip"><span class="chip-dot"></span>Karkala, Karnataka</span>
         </div>
         <div class="section-head">
           <span class="section-num">—</span>
           <h3 class="section-title" style="font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;font-family:var(--mono);font-weight:400;color:var(--silver);">Experience &amp; Milestones</h3>
         </div>
         <div class="timeline">
-          <div class="tl-item"><span class="tl-year">2024</span><div class="tl-body"><div class="tl-title">Research Intern — RF &amp; Wireless Lab</div><div class="tl-sub">Simulated 5G NR handover scenarios · Published internal technical report</div></div></div>
-          <div class="tl-item"><span class="tl-year">2023</span><div class="tl-body"><div class="tl-title">1st Place — Embedded Systems Hackathon</div><div class="tl-sub">Smart Agriculture IoT node · ESP32 + MQTT + Edge anomaly detection</div></div></div>
-          <div class="tl-item"><span class="tl-year">2023</span><div class="tl-body"><div class="tl-title">TinyML Certification — Edge Impulse</div><div class="tl-sub">Gesture recognition · Audio keyword spotting · STM32 deployment</div></div></div>
-          <div class="tl-item"><span class="tl-year">2022</span><div class="tl-body"><div class="tl-title">Joined IEEE Student Branch</div><div class="tl-sub">Technical Committee Lead · Organised workshops on PCB design &amp; Python ML</div></div></div>
-        </div>
+          <div class="timeline">
+
+  <div class="tl-item">
+    <span class="tl-year">2026</span>
+    <div class="tl-body">
+      <div class="tl-title">Started Machine Learning Journey</div>
+      <div class="tl-sub">
+        learning ML Problem types (Regression , culstering , Random Forest , SVM)
+        Learning NumPy, Pandas, Matplotlib, and Scikit-learn.
       </div>
     </div>
+  </div>
+
+  <div class="tl-item">
+    <span class="tl-year">2025</span>
+    <div class="tl-body">
+      <div class="tl-title">Python Development and Java OOPS</div>
+      <div class="tl-sub">
+        Built academic and personal programming projects.
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <span class="tl-year">2024</span>
+    <div class="tl-body">
+      <div class="tl-title">Advanced Communication Technology</div>
+      <div class="tl-sub">
+        Focused on Wireless Communications and Networking.
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <span class="tl-year">2023</span>
+    <div class="tl-body">
+      <div class="tl-title">Started E&C Engineering</div>
+      <div class="tl-sub">
+        Began academic journey in Electronics & Communication Engineering.
+      </div>
+    </div>
+  </div>
+
+</div>
   </section>
 
   <section class="skills-section">
@@ -400,7 +436,6 @@
       <div class="skill-cat">
         <div class="skill-cat-title">Core Technology</div>
         <div class="skill-grid">
-          <span class="skill-pill"><span class="skill-pill-icon">⚙️</span><span class="sp-label">Embedded Systems</span></span>
           <span class="skill-pill"><span class="skill-pill-icon">🤖</span><span class="sp-label">TinyML / Edge AI</span></span>
           <span class="skill-pill"><span class="skill-pill-icon">🧠</span><span class="sp-label">Machine Learning</span></span>
           <span class="skill-pill"><span class="skill-pill-icon">🔲</span><span class="sp-label">STM32 / ESP32</span></span>
@@ -412,9 +447,9 @@
         <div class="skill-cat-title">Languages &amp; Tools</div>
         <div class="skill-grid">
           <span class="skill-pill lang"><span class="skill-pill-icon">🐍</span><span class="sp-label">Python</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">📟</span><span class="sp-label">C / C++</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">📟</span><span class="sp-label">C </span></span>
           <span class="skill-pill lang"><span class="skill-pill-icon">📡</span><span class="sp-label">ns-3 Simulator</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">🧮</span><span class="sp-label">MATLAB</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🧮</span><span class="sp-label">HTML,CSS</span></span>
           <span class="skill-pill lang"><span class="skill-pill-icon">🔗</span><span class="sp-label">Git / GitHub</span></span>
           <span class="skill-pill lang"><span class="skill-pill-icon">🧩</span><span class="sp-label">Edge Impulse</span></span>
           <span class="skill-pill lang"><span class="skill-pill-icon">📊</span><span class="sp-label">TensorFlow Lite</span></span>
@@ -424,10 +459,10 @@
         <div class="skill-cat-title">Domain Knowledge</div>
         <div class="skill-grid">
           <span class="skill-pill domain"><span class="skill-pill-icon">📶</span><span class="sp-label">Wireless Communications</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">〰️</span><span class="sp-label">Signal Processing</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">🔒</span><span class="sp-label">Network Security</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">🌐</span><span class="sp-label">IoT Architecture</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">📻</span><span class="sp-label">RF System Design</span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">〰️</span><span class="sp-label">Optical Fiber Communication</span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">🔒</span><span class="sp-label">Computer Networks</span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">🌐</span><span class="sp-label">IoT </span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">📻</span><span class="sp-label">Web Technologies</span></span>
           <span class="skill-pill domain"><span class="skill-pill-icon">🔄</span><span class="sp-label">Ensemble Learning</span></span>
         </div>
       </div>
@@ -436,7 +471,7 @@
 </main>
 
 <footer>
-  <p class="footer-copy">© 2026 Darshan S L — E &amp; C(Advanced communication Technology) Engineering</p>
+  <p class="footer-copy">© 2026 Darshan S L — E &amp; C(Advanced communication Technology)  Student</p>
   <div class="footer-links">
     <a href="https://github.com/darshan320" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" target="_blank">LinkedIn</a>

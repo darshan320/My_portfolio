@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login — Darshan's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #070e0d;
+      color: #edfdf8;
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: #0d1c18;
+      border: 1px solid #132e26;
+      border-radius: 8px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #10b981, #06c9a8, #34d399);
+    }
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #10b981;
+      margin-bottom: 0.6rem;
+    }
+    h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .sub { font-size: 0.85rem; color: #6ea899; margin-bottom: 2rem; }
+
+    .flash {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: #f87171;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #2d5246;
+      margin-bottom: 0.4rem;
+    }
+    input {
+      width: 100%;
+      background: #0a1512;
+      border: 1px solid #132e26;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      color: #edfdf8;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus { border-color: rgba(16,185,129,0.5); }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #10b981, #06c9a8);
+      border: none; border-radius: 4px;
+      padding: 0.85rem;
+      color: #070e0d;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.88; }
+  </style>
+</head>
+
+<nav style="
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 64px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 2.5rem;
+  background: rgba(7,14,13,0.88); backdrop-filter: blur(16px);
+  border-bottom: 1px solid #132e26; z-index: 100;
+">
+  <a href="/index.html" style="
+    font-family: 'Space Mono', monospace; font-size: 0.9rem;
+    background: linear-gradient(90deg, #10b981, #06c9a8, #67e8f9);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none; letter-spacing: 0.05em;
+  ">&lt;Darshan&gt;</a>
+
+  <div style="display: flex; gap: 2rem;">
+    <a href="/index.html" style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#6ea899; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase;">Home</a>
+    <a href="/about.html" style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#6ea899; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase;">About</a>
+    <a href="/contact.html" style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#6ea899; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase;">Contact</a>
+  </div>
+</nav>
+<body>
+  <div class="card">
+    <p class="eyebrow">// admin access</p>
+    <h1>Inbox Login</h1>
+    <p class="sub">Restricted to authorized personnel only.</p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">⚠ {{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter username" autocomplete="off" required />
+
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter password" required />
+
+      <button type="submit">Access Inbox →</button>
+    </form>
+  </div>
+</body>
+</html>
