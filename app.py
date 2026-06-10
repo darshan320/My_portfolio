@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.secret_key = "super_secret_key"
 
 # ── Admin credentials ────────────────────────────────────────
