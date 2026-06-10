@@ -4,21 +4,22 @@ from mysql.connector import Error
 from functools import wraps
 
 app = Flask(__name__)
-# Change this to something new to invalidate old sessions
-app.secret_key = "new_secret_key_2026"
+app.secret_key = "super_secret_key"
 
-# ── Admin credentials ──────────────────────────────────────────
-ADMIN_USERNAME = "darshan"   # change this
-ADMIN_PASSWORD = "darshan@123"  # change this
+# ── Admin credentials ────────────────────────────────────────
+import bcrypt
 
-# Database connection configuration
+ADMIN_USERNAME = "darshan"
+
+ADMIN_PASSWORD_HASH = "$2b$12$vo7233OTgNqtBp1sQ1huyuokHtmUX1qfRybqYKWuMykTOdO3WM/g6"
+
+# ── Database config ──────────────────────────────────────────
 db_config = {
-    'host': '127.0.0.1',
-    'user': 'root',
+    'host':     '127.0.0.1',
+    'user':     'root',
     'password': '',
     'database': 'custermer_details'
 }
-
 # ── Login required decorator ───────────────────────────────────
 def login_required(f):
     @wraps(f)
@@ -76,22 +77,24 @@ def contact():
 # ── Login Page ─────────────────────────────────────────────────
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # if session.get('logged_in'):
-    #     return redirect('/details.html')          # already logged in
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        if (
+            username == ADMIN_USERNAME
+            and bcrypt.checkpw(
+                password.encode('utf-8'),
+                ADMIN_PASSWORD_HASH.encode('utf-8')
+            )
+        ):
             session['logged_in'] = True
-            session.permanent = False             # clears on browser close
+            session.permanent = False
             return redirect('/details.html')
-        else:
-            flash("Invalid username or password.", "error")
+
+        flash("Invalid username or password.", "error")
 
     return render_template('login.html')
-
 # ── Logout ─────────────────────────────────────────────────────
 @app.route('/logout')
 def logout():
