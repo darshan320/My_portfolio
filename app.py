@@ -115,13 +115,23 @@ def logout():
 @login_required
 def details():
     try:
-        messages = Detail.query.all()
+        rows = Detail.query.all()
+        messages = [
+            {
+                'id':         r.id,
+                'Full_name':  r.Full_name  or '',
+                'Email':      r.Email      or '',
+                'Subject':    r.Subject    or '',
+                'Message':    r.Message    or '',
+                'created_at': str(r.created_at) if r.created_at else '',
+            }
+            for r in rows
+        ]
         return render_template('details.html', messages=messages)
     except Exception as e:
         print(f"Database error: {e}")
         flash("Could not load messages.", "error")
         return redirect('/login')
-
 # ── Test DB (remove after testing) ───────────────────────────
 @app.route('/test-db')
 def test_db():
