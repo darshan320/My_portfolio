@@ -8,9 +8,14 @@ app = Flask(__name__, static_folder='static')
 app.secret_key = os.environ.get("SECRET_KEY", "super_secret_key")
 
 # ── Database config ──────────────────────────────────────────
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    'DATABASE_URL',
-    'mysql+pymysql://root:@127.0.0.1/custermer_details'
+MYSQL_HOST     = os.environ.get('MYSQL_HOST', '127.0.0.1')
+MYSQL_PORT     = os.environ.get('MYSQL_PORT', '3306')
+MYSQL_USER     = os.environ.get('MYSQL_USER', 'root')
+MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
+MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'custermer_details')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -39,10 +44,6 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
-
-@app.route('/work.html')
-def work():
-    return render_template('work.html')
 # ── Home ─────────────────────────────────────────────────────
 @app.route('/')
 @app.route('/index.html')
@@ -53,6 +54,11 @@ def index():
 @app.route('/about.html')
 def about():
     return render_template('about.html')
+
+# ── Work ─────────────────────────────────────────────────────
+@app.route('/work.html')
+def work():
+    return render_template('work.html')
 
 # ── Contact ──────────────────────────────────────────────────
 @app.route('/contact.html', methods=['GET', 'POST'])
@@ -116,12 +122,11 @@ def details():
         flash("Could not load messages.", "error")
         return redirect('/login')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# ── Test DB (remove after testing) ───────────────────────────
 @app.route('/test-db')
 def test_db():
-    host = os.environ.get('MYSQL_HOST')
-    port = os.environ.get('MYSQL_PORT')
-    user = os.environ.get('MYSQL_USER')
-    db   = os.environ.get('MYSQL_DATABASE')
-    return f"HOST: {host} | PORT: {port} | USER: {user} | DB: {db}"
+    return (f"HOST: {MYSQL_HOST} | PORT: {MYSQL_PORT} | "
+            f"USER: {MYSQL_USER} | DB: {MYSQL_DATABASE}")
+
+if __name__ == '__main__':
+    app.run(debug=True)
