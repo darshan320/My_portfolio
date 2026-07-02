@@ -27,7 +27,7 @@ ADMIN_PASSWORD_HASH = "$2b$12$vo7233OTgNqtBp1sQ1huyuokHtmUX1qfRybqYKWuMykTOdO3WM
 # ── Model ────────────────────────────────────────────────────
 class Detail(db.Model):
     __tablename__ = 'Details'
-    id         = db.Column('SI.NO', db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     Full_name  = db.Column('Full_name', db.String(200))
     Email      = db.Column('Email',     db.String(200))
     Subject    = db.Column('Subject',   db.String(300))
