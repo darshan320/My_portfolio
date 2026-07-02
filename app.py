@@ -118,4 +118,10 @@ def details():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
+@app.route('/test-db')
+def test_db():
+    host = os.environ.get('MYSQL_HOST')
+    port = os.environ.get('MYSQL_PORT')
+    user = os.environ.get('MYSQL_USER')
+    db   = os.environ.get('MYSQL_DATABASE')
+    return f"HOST: {host} | PORT: {port} | USER: {user} | DB: {db}"
