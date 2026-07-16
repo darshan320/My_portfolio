@@ -3,19 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 import bcrypt
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = os.environ.get("SECRET_KEY", "super_secret_key")
 
 # ── Database config ──────────────────────────────────────────
-MYSQL_HOST     = os.environ.get('MYSQL_HOST', '127.0.0.1')
-MYSQL_PORT     = os.environ.get('MYSQL_PORT', '3306')
-MYSQL_USER     = os.environ.get('MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
-MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'custermer_details')
-
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL',
+    'sqlite:///local.db'  # fallback for local testing
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -26,13 +24,17 @@ ADMIN_PASSWORD_HASH = "$2b$12$vo7233OTgNqtBp1sQ1huyuokHtmUX1qfRybqYKWuMykTOdO3WM
 
 # ── Model ────────────────────────────────────────────────────
 class Detail(db.Model):
-    __tablename__ = 'Details'
-    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    Full_name  = db.Column('Full_name', db.String(200))
-    Email      = db.Column('Email',     db.String(200))
-    Subject    = db.Column('Subject',   db.String(300))
-    Message    = db.Column('Message',   db.Text)
-    created_at = db.Column('Date',      db.String(100))
+    __tablename__ = 'details'
+    id         = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    full_name  = db.Column(db.String(200))
+    email      = db.Column(db.String(200))
+    subject    = db.Column(db.String(300))
+    message    = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+# ── Auto create tables ───────────────────────────────────────
+with app.app_context():
+    db.create_all()
 
 # ── Login required decorator ─────────────────────────────────
 def login_required(f):
@@ -70,10 +72,10 @@ def contact():
         message   = request.form.get('message')
         try:
             new_msg = Detail(
-                Full_name=full_name,
-                Email=email,
-                Subject=subject,
-                Message=message
+                full_name=full_name,
+                email=email,
+                subject=subject,
+                message=message
             )
             db.session.add(new_msg)
             db.session.commit()
@@ -115,14 +117,14 @@ def logout():
 @login_required
 def details():
     try:
-        rows = Detail.query.all()
+        rows = Detail.query.order_by(Detail.created_at.desc()).all()
         messages = [
             {
                 'id':         r.id,
-                'Full_name':  r.Full_name  or '',
-                'Email':      r.Email      or '',
-                'Subject':    r.Subject    or '',
-                'Message':    r.Message    or '',
+                'Full_name':  r.full_name  or '',
+                'Email':      r.email      or '',
+                'Subject':    r.subject    or '',
+                'Message':    r.message    or '',
                 'created_at': str(r.created_at) if r.created_at else '',
             }
             for r in rows
@@ -132,11 +134,6 @@ def details():
         print(f"Database error: {e}")
         flash("Could not load messages.", "error")
         return redirect('/login')
-# ── Test DB (remove after testing) ───────────────────────────
-@app.route('/test-db')
-def test_db():
-    return (f"HOST: {MYSQL_HOST} | PORT: {MYSQL_PORT} | "
-            f"USER: {MYSQL_USER} | DB: {MYSQL_DATABASE}")
 
 if __name__ == '__main__':
     app.run(debug=True)
