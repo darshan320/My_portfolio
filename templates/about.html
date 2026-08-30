@@ -8,30 +8,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:           #070e0d;
-      --bg-panel:     #0a1512;
-      --bg-card:      #0d1c18;
-      --border:       #132e26;
-      --border-hi:    #10b981;
-      --g-start:      #10b981;
-      --g-mid:        #06c9a8;
-      --g-end:        #34d399;
-      --mint:         #6ee7b7;
-      --grad:         linear-gradient(135deg, #10b981 0%, #06c9a8 50%, #34d399 100%);
-      --grad-h:       linear-gradient(135deg, #34d399 0%, #06c9a8 50%, #10b981 100%);
-      --grad-text:    linear-gradient(90deg, #10b981 0%, #06c9a8 45%, #67e8f9 100%);
-      --glow-a:       rgba(16,185,129,0.32);
-      --glow-b:       rgba(6,201,168,0.18);
-      --dim-a:        rgba(16,185,129,0.10);
-      --dim-b:        rgba(52,211,153,0.07);
-      --amber:        #f59e0b;
-      --white:        #edfdf8;
-      --silver:       #6ea899;
-      --muted:        #2d5246;
-      --mono:         'Space Mono', monospace;
-      --sans:         'Syne', sans-serif;
-      --radius:       4px;
-      --transition:   0.22s cubic-bezier(0.4,0,0.2,1);
+      --bg:            #070e0d;
+      --bg-panel:      #0a1512;
+      --bg-card:       #0d1c18;
+      --border:        #132e26;
+      --border-hi:     #10b981;
+      --g-start:       #10b981;
+      --g-mid:         #06c9a8;
+      --g-end:         #34d399;
+      --mint:          #6ee7b7;
+      --grad:          linear-gradient(135deg, #10b981 0%, #06c9a8 50%, #34d399 100%);
+      --grad-h:        linear-gradient(135deg, #34d399 0%, #06c9a8 50%, #10b981 100%);
+      --grad-text:     linear-gradient(90deg, #10b981 0%, #06c9a8 45%, #67e8f9 100%);
+      --glow-a:        rgba(16,185,129,0.32);
+      --glow-b:        rgba(6,201,168,0.18);
+      --dim-a:         rgba(16,185,129,0.10);
+      --dim-b:         rgba(52,211,153,0.07);
+      --amber:         #f59e0b;
+      --white:         #edfdf8;
+      --silver:        #6ea899;
+      --muted:         #2d5246;
+      --mono:          'Space Mono', monospace;
+      --sans:          'Syne', sans-serif;
+      --radius:        4px;
+      --transition:    0.22s cubic-bezier(0.4,0,0.2,1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -236,6 +236,16 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .tl-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem; }
+    
+    /* ADDED HERE */
+    .tl-sublabel {
+      font-size: 0.75em;
+      font-weight: 400;
+      opacity: 0.65;
+      margin-left: 6px;
+    }
+    /* ---------- */
+
     .tl-sub { font-family: var(--mono); font-size: 0.68rem; color: var(--silver); letter-spacing: 0.05em; }
 
     /* ===== SECTION COMMONS ===== */
@@ -386,10 +396,19 @@
   <div class="tl-item">
     <span class="tl-year">2026</span>
     <div class="tl-body">
-      <div class="tl-title">Started Machine Learning Journey</div>
+      <div class="tl-title">Built Ensemble ML &amp; RAG Projects <span class="tl-sublabel">(Mid 2026)</span></div>
       <div class="tl-sub">
-        learning ML Problem types (Regression , culstering , Random Forest , SVM)
-        Learning NumPy, Pandas, Matplotlib, and Scikit-learn.
+        Applied ML skills to build a multi-model ensemble classifier for network congestion prediction using bootstrap sampling, and developed HuggingRAG — a Retrieval-Augmented Generation app using LangChain, ChromaDB, and Hugging Face models. Also built and deployed this portfolio.
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <span class="tl-year">2026</span>
+    <div class="tl-body">
+      <div class="tl-title">Started Machine Learning Journey <span class="tl-sublabel">(Early 2026)</span></div>
+      <div class="tl-sub">
+        Learning ML problem types (Regression, Clustering, Random Forest, SVM) and building intuition for data analysis and predictive modeling using NumPy, Pandas, Matplotlib, and Scikit-learn.
       </div>
     </div>
   </div>
@@ -397,9 +416,9 @@
   <div class="tl-item">
     <span class="tl-year">2025</span>
     <div class="tl-body">
-      <div class="tl-title">Python Development and Java OOPS</div>
+      <div class="tl-title">Python Development and Java OOPs</div>
       <div class="tl-sub">
-        Built academic and personal programming projects.
+        Built academic and personal programming projects, combining coursework with self-driven practice in Python and Java OOP concepts.
       </div>
     </div>
   </div>
@@ -437,34 +456,40 @@
       <div class="skill-cat">
         <div class="skill-cat-title">Core Technology</div>
         <div class="skill-grid">
-          <span class="skill-pill"><span class="skill-pill-icon">🤖</span><span class="sp-label">TinyML / Edge AI</span></span>
+          <span class="skill-pill"><span class="skill-pill-icon">🤖</span><span class="sp-label">Retrieval-Augmented Generation (RAG)</span></span>
+          <span class="skill-pill"><span class="skill-pill-icon">🔎</span><span class="sp-label">Vector Search / Embeddings</span></span>
           <span class="skill-pill"><span class="skill-pill-icon">🧠</span><span class="sp-label">Machine Learning</span></span>
-          <span class="skill-pill"><span class="skill-pill-icon">🔲</span><span class="sp-label">STM32 / ESP32</span></span>
-          <span class="skill-pill"><span class="skill-pill-icon">🔋</span><span class="sp-label">PCB Design</span></span>
-          <span class="skill-pill"><span class="skill-pill-icon">⚡</span><span class="sp-label">RTOS &amp; Firmware</span></span>
+          <span class="skill-pill"><span class="skill-pill-icon">🔄</span><span class="sp-label">Ensemble Learning</span></span>
+          <span class="skill-pill"><span class="skill-pill-icon">📡</span><span class="sp-label">Network Congestion Prediction</span></span>
+          
         </div>
       </div>
       <div class="skill-cat">
         <div class="skill-cat-title">Languages &amp; Tools</div>
         <div class="skill-grid">
           <span class="skill-pill lang"><span class="skill-pill-icon">🐍</span><span class="sp-label">Python</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">📟</span><span class="sp-label">C </span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">📡</span><span class="sp-label">ns-3 Simulator</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">🧮</span><span class="sp-label">HTML,CSS</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🤗</span><span class="sp-label">Hugging Face</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🦜</span><span class="sp-label">LangChain</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🖼️</span><span class="sp-label">Streamlit</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🗄️</span><span class="sp-label">ChromaDB</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🧮</span><span class="sp-label">HTML, CSS</span></span>
+          
+          <span class="skill-pill lang"><span class="skill-pill-icon">📊</span><span class="sp-label">Scikit-learn</span></span>
+          <span class="skill-pill lang"><span class="skill-pill-icon">🐼</span><span class="sp-label">Pandas</span></span>
           <span class="skill-pill lang"><span class="skill-pill-icon">🔗</span><span class="sp-label">Git / GitHub</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">🧩</span><span class="sp-label">Edge Impulse</span></span>
-          <span class="skill-pill lang"><span class="skill-pill-icon">📊</span><span class="sp-label">TensorFlow Lite</span></span>
+          
         </div>
       </div>
       <div class="skill-cat">
         <div class="skill-cat-title">Domain Knowledge</div>
         <div class="skill-grid">
+          <span class="skill-pill domain"><span class="skill-pill-icon">📚</span><span class="sp-label">Natural Language Processing</span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">🔒</span><span class="sp-label">Computer Networks</span></span>
           <span class="skill-pill domain"><span class="skill-pill-icon">📶</span><span class="sp-label">Wireless Communications</span></span>
           <span class="skill-pill domain"><span class="skill-pill-icon">〰️</span><span class="sp-label">Optical Fiber Communication</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">🔒</span><span class="sp-label">Computer Networks</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">🌐</span><span class="sp-label">IoT </span></span>
+          <span class="skill-pill domain"><span class="skill-pill-icon">🌐</span><span class="sp-label">IoT</span></span>
           <span class="skill-pill domain"><span class="skill-pill-icon">📻</span><span class="sp-label">Web Technologies</span></span>
-          <span class="skill-pill domain"><span class="skill-pill-icon">🔄</span><span class="sp-label">Ensemble Learning</span></span>
+          
         </div>
       </div>
     </div>

@@ -521,9 +521,109 @@
 <main>
   <div class="work-list">
 
+
     <!-- PROJECT 1 -->
+    <article class="work-item" id="huggingrag">
+      <span class="work-id">01 / AI &amp; NLP</span>
+      <div class="work-top">
+        <div class="work-icon-title">
+          <div class="work-icon">🤗</div>
+          <h2 class="work-title">HuggingRAG — Zero-Cost RAG Chatbot</h2>
+        </div>
+        <span class="work-category">AI / RAG / NLP</span>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-text">
+          <span class="work-section-label">Overview</span>
+          <p>A fully open-source Retrieval-Augmented Generation (RAG) chatbot that answers questions grounded in a custom document knowledge base, without relying on any paid LLM APIs. Built entirely on free Hugging Face models, the system combines semantic vector search, keyword-based retrieval, and conversational memory to deliver accurate, hallucination-resistant answers through a deployable web interface.</p>
+
+          <span class="work-section-label">Approach</span>
+          <ul>
+            <li>Built an ingestion pipeline that chunks source documents and embeds them locally using a free sentence-transformer model, storing vectors in a persistent ChromaDB store.</li>
+            <li>Implemented a hybrid retriever combining dense vector search with BM25 keyword search via LangChain's EnsembleRetriever, improving accuracy on queries with exact terms or figures.</li>
+            <li>Designed a history-aware query rewriting step so follow-up questions are resolved using prior conversation context, enabling natural multi-turn dialogue.</li>
+            <li>Wrapped the pipeline in a Streamlit chat interface with live per-user document upload, using an isolated in-memory vector store per session to keep uploaded data private.</li>
+          </ul>
+
+          <span class="work-section-label">Outcome</span>
+          <p>A fully functional, deployable chatbot that answers document-grounded questions with zero API cost, correctly declines to answer when information isn't present in retrieved context, and supports live user-uploaded knowledge — all running on free, open-source models.</p>
+        </div>
+
+        <div class="work-side">
+          <div class="side-block">
+            <div class="metric-row"><span class="metric-label">API Cost</span><span class="metric-val">$0</span></div>
+            <div class="metric-row"><span class="metric-label">Embeddings</span><span class="metric-val">MiniLM-L6-v2</span></div>
+            <div class="metric-row"><span class="metric-label">LLM</span><span class="metric-val">Qwen2.5-7B</span></div>
+            <div class="metric-row"><span class="metric-label">Retrieval</span><span class="metric-val">Hybrid (Vector + BM25)</span></div>
+          </div>
+          <div class="work-badges">
+            <span class="badge">Python</span>
+            <span class="badge">LangChain</span>
+            <span class="badge">Hugging Face</span>
+            <span class="badge">ChromaDB</span>
+            <span class="badge badge-teal">Streamlit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-footer">
+        <a href="https://github.com/darshan320/HuggingRAG" target="_blank" class="btn btn-solid">View Code →</a>
+        <a href="contact.html" class="btn btn-outline">Discuss This Project</a>
+      </div>
+    </article>
+    <!-- PROJECT 2 -->
+    <article class="work-item" id="ml-practice">
+      <span class="work-id">02 / Networks</span>
+      <div class="work-top">
+        <div class="work-icon-title">
+          <div class="work-icon">📡</div>
+          <h2 class="work-title">Network Congestion Prediction — Multi-Model Ensemble with Bootstrap Sampling</h2>
+        </div>
+        <span class="work-category">Networks</span>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-text">
+          <span class="work-section-label">Overview</span>
+          <p>A machine learning project that generates synthetic network performance data and builds an ensemble Voting Classifier to predict network congestion, combining multiple base learners into a single, more robust predictive model.</p>
+
+          <span class="work-section-label">Approach</span>
+          <ul>
+            <li>Generated a synthetic dataset simulating network metrics — latency, packet loss percentage, bandwidth usage, and active user count — with built-in correlation logic linking high latency, packet loss, and user load to congestion.</li>
+            <li>Applied bootstrap sampling to create three distinct resampled subsets of the data, giving each base model a slightly different view of the training distribution.</li>
+            <li>Trained three base classifiers — K-Nearest Neighbors, Decision Tree, and Logistic Regression — each on its own bootstrap sample.</li>
+            <li>Combined the base models into a hard-voting Ensemble Voting Classifier and evaluated it against each individual model using classification reports, accuracy scores, and confusion matrices.</li>
+          </ul>
+
+          <span class="work-section-label">Outcome</span>
+          <p>The ensemble model matched or outperformed the individual base classifiers, illustrating how combining diverse learners on bootstrapped data reduces variance and produces a more reliable congestion classifier than any single model alone.</p>
+        </div>
+
+        <div class="work-side">
+          <div class="side-block">
+            <div class="metric-row"><span class="metric-label">Environment</span><span class="metric-val">Jupyter Notebook</span></div>
+            <div class="metric-row"><span class="metric-label">Stack</span><span class="metric-val">Scikit-learn</span></div>
+            <div class="metric-row"><span class="metric-label">Focus</span><span class="metric-val">Ensemble Learning</span></div>
+          </div>
+          <div class="work-badges">
+            <span class="badge">Jupyter Notebook</span>
+            <span class="badge">Python</span>
+            <span class="badge">Scikit-learn</span>
+            <span class="badge">Pandas</span>
+            <span class="badge badge-teal">Voting Classifier</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-footer">
+        <a href="https://github.com/darshan320/Network_Congestion_Prediction_A_Multi_Model_Ensemble_Approach_with_Bootstrap_Sampling" target="_blank" class="btn btn-solid">View Report →</a>
+        <a href="contact.html" class="btn btn-outline">Discuss This Project</a>
+      </div>
+    </article>
+    <!-- PROJECT 3 -->
     <article class="work-item" id="smart-fan">
-      <span class="work-id">01 / IoT &amp; Embedded</span>
+      <span class="work-id">03 / IoT &amp; Embedded</span>
       <div class="work-top">
         <div class="work-icon-title">
           <div class="work-icon">🔌</div>
@@ -572,9 +672,9 @@
       </div>
     </article>
 
-    <!-- PROJECT 2 -->
+    <!-- PROJECT 4 -->
     <article class="work-item" id="tinyml-classifier">
-      <span class="work-id">02 / ML Research</span>
+      <span class="work-id">04 / ML Research</span>
       <div class="work-top">
         <div class="work-icon-title">
           <div class="work-icon">🧠</div>
@@ -623,56 +723,7 @@
       </div>
     </article>
 
-    <!-- PROJECT 3 -->
-    <article class="work-item" id="ml-practice">
-      <span class="work-id">03 / Networks</span>
-      <div class="work-top">
-        <div class="work-icon-title">
-          <div class="work-icon">📡</div>
-          <h2 class="work-title">Machine Learning Practice Projects</h2>
-        </div>
-        <span class="work-category">Networks</span>
-      </div>
-
-      <div class="work-grid">
-        <div class="work-text">
-          <span class="work-section-label">Overview</span>
-          <p>A collection of applied machine learning exercises focused on building intuition for data analysis and predictive modeling, using the standard Python data science stack inside Google Colab and Jupyter notebooks.</p>
-
-          <span class="work-section-label">Approach</span>
-          <ul>
-            <li>Cleaned, explored, and visualized datasets using Pandas and Matplotlib to surface trends and relationships in the data.</li>
-            <li>Implemented and evaluated multiple Scikit-learn models including regression and classification approaches across different datasets.</li>
-            <li>Practiced model evaluation techniques such as train/test splitting and basic hyperparameter tuning.</li>
-            <li>Documented findings and visualizations to build a reusable reference for predictive modeling workflows.</li>
-          </ul>
-
-          <span class="work-section-label">Outcome</span>
-          <p>A practical, hands-on foundation in the end-to-end ML workflow — from raw data to a working predictive model — that directly informed the modeling decisions made in the TinyML classifier project above.</p>
-        </div>
-
-        <div class="work-side">
-          <div class="side-block">
-            <div class="metric-row"><span class="metric-label">Environment</span><span class="metric-val">Colab</span></div>
-            <div class="metric-row"><span class="metric-label">Stack</span><span class="metric-val">NumPy/Pandas</span></div>
-            <div class="metric-row"><span class="metric-label">Focus</span><span class="metric-val">EDA + Models</span></div>
-          </div>
-          <div class="work-badges">
-            <span class="badge">Google Colab</span>
-            <span class="badge">Jupyter Notebook</span>
-            <span class="badge">Python</span>
-            <span class="badge">Pandas</span>
-            <span class="badge badge-teal">Matplotlib</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="work-footer">
-        <a href="https://github.com/darshan320" target="_blank" class="btn btn-solid">View Report →</a>
-        <a href="contact.html" class="btn btn-outline">Discuss This Project</a>
-      </div>
-    </article>
-
+    
   </div>
 </main>
 

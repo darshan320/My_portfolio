@@ -410,7 +410,6 @@
 <body>
 <div class="bg-glow"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">&lt;Darshan&gt;</a>
   <button class="hamburger" id="hbg" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -423,7 +422,6 @@
   </ul>
 </nav>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
     <h1 class="page-title">Message <em>Inbox</em></h1>
@@ -432,10 +430,8 @@
   <div class="divider"></div>
 </div>
 
-<!-- MAIN -->
 <div class="main-wrap">
 
-  <!-- STATS -->
   <div class="stats-row" id="statsRow">
     <div class="stat-card">
       <div class="stat-label">Total Messages</div>
@@ -451,7 +447,6 @@
     </div>
   </div>
 
-  <!-- TOOLBAR -->
   <div class="toolbar">
     <div class="toolbar-left">
       <div class="search-box">
@@ -464,7 +459,6 @@
     <div class="record-count" id="recordCount">Loading…</div>
   </div>
 
-  <!-- TABLE -->
   <div class="table-wrap">
     <table class="data-table" id="dataTable">
       <thead>
@@ -478,18 +472,15 @@
         </tr>
       </thead>
       <tbody id="tableBody">
-        <!-- Rows injected by JS / Jinja -->
-      </tbody>
+        </tbody>
     </table>
 
-    <!-- Empty state (shown when no data) -->
     <div class="empty-state" id="emptyState" style="display:none;">
       <div class="empty-icon">📭</div>
       <div class="empty-title">No messages yet</div>
       <div class="empty-sub">// Inbox will populate once the contact form receives submissions</div>
     </div>
 
-    <!-- Pagination -->
     <div class="pagination" id="pagination">
       <div class="page-info" id="pageInfo">—</div>
       <div class="page-btns" id="pageBtns"></div>
@@ -497,7 +488,6 @@
   </div>
 </div>
 
-<!-- VIEW MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <button class="modal-close" id="modalClose">✕</button>
@@ -535,7 +525,6 @@
   /* -------------------------------------------------------
      CONFIG — replace with your Flask API endpoint or Jinja
   ------------------------------------------------------- */
-
 
   // If Flask injects data via Jinja, swap the line below:
   const ALL_DATA = {{ messages | tojson }};// → const ALL_DATA = {{ messages | tojson }};
@@ -636,10 +625,10 @@
     empty.style.display = 'none';
     pag.style.display   = 'flex';
 
-tbody.innerHTML = slice.map((row, i) => {
-    const rowIndex = start + i;          // ← actual index in filteredData
-    const isNew    = isThisWeek(row.created_at);
-    return `
+    tbody.innerHTML = slice.map((row, i) => {
+      const rowIndex = start + i;          // ← actual index in filteredData
+      const isNew    = isThisWeek(row.created_at);
+      return `
         <tr class="${isNew ? 'new-row' : ''}" onclick="toggleExpand(${rowIndex}, event)">
           <td class="td-num">${start + i + 1}</td>
           <td class="td-name">
@@ -658,7 +647,7 @@ tbody.innerHTML = slice.map((row, i) => {
             <div class="action-btns">
               <button class="btn-action" onclick="openModal(${rowIndex})">View</button>
               <a href="mailto:${escape(row.Email)}?subject=Re: ${escape(row.Subject)}" class="btn-action">Reply ↗</a>
-              <button class="btn-action btn-danger" onclick="deleteRow(${rowIndex})">Del</button>
+              <button class="btn-action btn-danger" onclick="deleteRow('${row.id}')">Del</button>
             </div>
           </td>
         </tr>
@@ -670,8 +659,8 @@ tbody.innerHTML = slice.map((row, i) => {
             </div>
           </td>
         </tr>
-    `;
-}).join('');
+      `;
+    }).join('');
 
     renderPagination(total);
     updateSortHeaders();
@@ -739,7 +728,7 @@ tbody.innerHTML = slice.map((row, i) => {
   /* -------------------------------------------------------
      MODAL
   ------------------------------------------------------- */
-function openModal(index) {
+  function openModal(index) {
     const row = filteredData[index];   // ← use index, not id
     if (!row) return;
     document.getElementById('modalName').textContent    = row.Full_name;
@@ -748,7 +737,7 @@ function openModal(index) {
     document.getElementById('modalMessage').textContent = row.Message;
     document.getElementById('modalSub').textContent     = fmtDate(row.created_at) + ' · ' + fmtTime(row.created_at);
     document.getElementById('modalOverlay').classList.add('open');
-}
+  }
 
   document.getElementById('modalClose').onclick = () =>
     document.getElementById('modalOverlay').classList.remove('open');
@@ -760,7 +749,7 @@ function openModal(index) {
   /* -------------------------------------------------------
      DELETE (client-side demo — hook to Flask DELETE route)
   ------------------------------------------------------- */
-function deleteRow(id) {
+  function deleteRow(id) {
     if (!confirm('Delete this message? This action cannot be undone.')) return;
     const idx = ALL_DATA.findIndex(r => String(r.id) === String(id));
     if (idx !== -1) { ALL_DATA.splice(idx, 1); applyFilters(); updateStats(); }
@@ -812,4 +801,3 @@ function deleteRow(id) {
 </script>
 </body>
 </html>
-
