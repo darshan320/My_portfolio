@@ -286,6 +286,20 @@
       white-space: nowrap;
     }
 
+    .work-meta-note {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--silver);
+      margin: -0.4rem 0 1.2rem;
+      padding: 0.5rem 0.85rem;
+      border-left: 2px solid var(--g-start);
+      background: var(--dim-a);
+      border-radius: 0 3px 3px 0;
+    }
+    .work-meta-note strong {
+      color: var(--mint);
+    }
+
     .work-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
@@ -533,10 +547,14 @@
         <span class="work-category">AI / RAG / NLP</span>
       </div>
 
+      <div class="work-meta-note">
+        Built during internship at <strong>Dlithe Consultancy Services Pvt. Ltd.</strong> (Jun 22 – Aug 21, 2026)
+      </div>
+
       <div class="work-grid">
         <div class="work-text">
           <span class="work-section-label">Overview</span>
-          <p>A fully open-source Retrieval-Augmented Generation (RAG) chatbot that answers questions grounded in a custom document knowledge base, without relying on any paid LLM APIs. Built entirely on free Hugging Face models, the system combines semantic vector search, keyword-based retrieval, and conversational memory to deliver accurate, hallucination-resistant answers through a deployable web interface.</p>
+          <p>A fully open-source Retrieval-Augmented Generation (RAG) chatbot that answers questions grounded in a custom document knowledge base, without relying on any paid LLM APIs. Built entirely on free Hugging Face models, the system combines semantic vector search, keyword-based retrieval, and conversational memory to deliver accurate, hallucination-resistant answers through a deployable web interface. This project was developed as part of a data science and machine learning internship, applying concepts including data preprocessing, model building, and evaluation to a real-world NLP application.</p>
 
           <span class="work-section-label">Approach</span>
           <ul>
