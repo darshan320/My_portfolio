@@ -6,332 +6,7 @@
   <title>Darshan's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:            #070e0d;
-      --bg-panel:      #0a1512;
-      --bg-card:       #0d1c18;
-      --border:        #132e26;
-      --border-hi:     #10b981;
-      --g-start:       #10b981;
-      --g-mid:         #06c9a8;
-      --g-end:         #34d399;
-      --mint:          #6ee7b7;
-      --grad:          linear-gradient(135deg, #10b981 0%, #06c9a8 50%, #34d399 100%);
-      --grad-h:        linear-gradient(135deg, #34d399 0%, #06c9a8 50%, #10b981 100%);
-      --grad-text:     linear-gradient(90deg, #10b981 0%, #06c9a8 45%, #67e8f9 100%);
-      --glow-a:        rgba(16,185,129,0.32);
-      --glow-b:        rgba(6,201,168,0.18);
-      --dim-a:         rgba(16,185,129,0.10);
-      --dim-b:         rgba(52,211,153,0.07);
-      --amber:         #f59e0b;
-      --white:         #edfdf8;
-      --silver:        #6ea899;
-      --muted:         #2d5246;
-      --mono:          'Space Mono', monospace;
-      --sans:          'Syne', sans-serif;
-      --radius:        4px;
-      --transition:    0.22s cubic-bezier(0.4,0,0.2,1);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .bg-glow {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-    .bg-glow::before {
-      content: '';
-      position: absolute;
-      top: -15%; right: -10%;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(ellipse, rgba(16,185,129,0.07) 0%, transparent 60%);
-    }
-    .bg-glow::after {
-      content: '';
-      position: absolute;
-      bottom: 10%; left: -15%;
-      width: 45vw; height: 45vw;
-      background: radial-gradient(ellipse, rgba(6,201,168,0.05) 0%, transparent 65%);
-    }
-
-    /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2.5rem; height: 64px;
-      background: rgba(7,14,13,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.9rem;
-      background: var(--grad-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--mono); font-size: 0.78rem;
-      color: var(--silver); text-decoration: none;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      position: relative; padding-bottom: 4px;
-      transition: color var(--transition);
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1px; background: var(--grad);
-      transition: width var(--transition);
-    }
-    .nav-links a:hover { color: var(--g-end); }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-    .nav-links a.active { color: var(--g-end); }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--silver); transition: all var(--transition); }
-
-    /* ===== PAGE HEADER ===== */
-    .page-header { padding-top: 64px; position: relative; z-index: 1; }
-    .page-header-inner { max-width: 1200px; margin: 0 auto; padding: 4rem 2.5rem 0; }
-
-    .page-eyebrow {
-      font-family: var(--mono); font-size: 0.72rem;
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.8rem;
-    }
-
-    .page-title {
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem;
-    }
-
-    .page-title em {
-      font-style: normal;
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    .page-desc { font-size: 1rem; color: var(--silver); max-width: 540px; margin-bottom: 3rem; }
-
-    /* Gradient divider */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, rgba(16,185,129,0.6), rgba(52,211,153,0.2), transparent);
-    }
-
-    /* ===== MAIN ===== */
-    main { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
-
-    /* ===== ABOUT SECTION ===== */
-    .about-section { padding: 5rem 0; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 4rem; align-items: start;
-    }
-
-    .avatar-wrap { position: sticky; top: 90px; }
-
-    .avatar-frame {
-      width: 100%; aspect-ratio: 3/4; max-width: 280px;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 6px; overflow: hidden; position: relative;
-    }
-
-    /* Gradient tint on avatar frame */
-    .avatar-frame::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(160deg, rgba(16,185,129,0.08) 0%, transparent 55%),
-        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(16,185,129,0.025) 3px, rgba(16,185,129,0.025) 4px);
-      pointer-events: none;
-    }
-
-    .avatar-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 1rem; padding: 2rem;
-    }
-
-    .avatar-icon {
-      width: 80px; height: 80px; border-radius: 50%;
-      background: var(--dim-a); border: 2px solid rgba(16,185,129,0.4);
-      display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
-    }
-
-    .avatar-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-align: center; }
-
-    .avatar-tag {
-      position: absolute; bottom: 1rem; left: 1rem;
-      background: rgba(7,14,13,0.85); backdrop-filter: blur(8px);
-      border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 0.5rem 0.9rem;
-    }
-    .avatar-tag-name { font-weight: 700; font-size: 0.88rem; }
-    .avatar-tag-role { font-family: var(--mono); font-size: 0.62rem; color: var(--g-start); letter-spacing: 0.08em; }
-
-    .social-strip { display: flex; gap: 0.7rem; margin-top: 1.2rem; max-width: 280px; }
-    .social-btn {
-      flex: 1; font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--silver); text-decoration: none;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 0.5rem; text-align: center; transition: all var(--transition);
-    }
-    .social-btn:hover { color: var(--g-end); border-color: rgba(16,185,129,0.5); background: var(--dim-a); }
-
-    .bio-intro { font-size: 1.12rem; color: var(--white); line-height: 1.8; margin-bottom: 1.5rem; }
-    .bio-intro strong {
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .bio-body { font-size: 0.93rem; color: var(--silver); line-height: 1.85; margin-bottom: 2rem; }
-
-    .bio-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
-    .chip {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
-      padding: 0.3rem 0.75rem; border-radius: 2px;
-      border: 1px solid var(--border); color: var(--silver); background: var(--bg-card);
-    }
-    .chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--g-start); }
-
-    .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
-    .tl-item { display: grid; grid-template-columns: 90px 1fr; gap: 1.2rem; align-items: start; }
-    .tl-year {
-      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; padding-top: 0.15rem;
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .tl-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem; }
-    
-    /* ADDED HERE */
-    .tl-sublabel {
-      font-size: 0.75em;
-      font-weight: 400;
-      opacity: 0.65;
-      margin-left: 6px;
-    }
-    /* ---------- */
-
-    .tl-sub { font-family: var(--mono); font-size: 0.68rem; color: var(--silver); letter-spacing: 0.05em; }
-
-    /* ===== SECTION COMMONS ===== */
-    .section-head { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 2.5rem; }
-    .section-num {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em;
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .section-title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; }
-    .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(16,185,129,0.5), rgba(52,211,153,0.15), transparent); }
-
-    /* ===== SKILLS SECTION ===== */
-    .skills-section { padding: 0 0 5rem; }
-    .skill-cats { display: flex; flex-direction: column; gap: 2.5rem; }
-
-    .skill-cat-title {
-      font-family: var(--mono); font-size: 0.68rem; color: var(--silver);
-      letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
-    }
-    .skill-cat-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
-
-    .skill-grid { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-
-    .skill-pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.55rem 1rem; border-radius: var(--radius);
-      border: 1px solid var(--border); background: var(--bg-card);
-      font-size: 0.82rem; font-weight: 600; color: var(--white);
-      transition: all var(--transition); cursor: default;
-    }
-    .skill-pill:hover {
-      border-color: rgba(16,185,129,0.5); background: var(--dim-a);
-      transform: translateY(-2px); box-shadow: 0 4px 16px var(--glow-b);
-    }
-    .skill-pill:hover .sp-label {
-      background: var(--grad-text);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .skill-pill-icon { font-size: 1rem; }
-
-    .skill-pill.lang { border-color: rgba(6,201,168,0.2); }
-    .skill-pill.lang:hover { border-color: var(--g-mid); background: rgba(6,201,168,0.08); }
-
-    .skill-pill.domain { border-color: rgba(245,158,11,0.18); }
-    .skill-pill.domain:hover { border-color: var(--amber); background: rgba(245,158,11,0.06); }
-    .skill-pill.domain:hover .sp-label { background: linear-gradient(90deg, #f59e0b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    /* ===== FOOTER ===== */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
-    }
-    footer::before {
-      content: ''; position: absolute; top: -1px; left: 2.5rem; right: 2.5rem;
-      height: 1px; background: linear-gradient(90deg, transparent, var(--g-start), var(--g-mid), transparent);
-    }
-    .footer-copy { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-family: var(--mono); font-size: 0.68rem; color: var(--silver); text-decoration: none; letter-spacing: 0.08em; transition: color var(--transition); }
-    .footer-links a:hover { color: var(--g-end); }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .page-eyebrow { animation: fadeUp 0.5s 0.1s both; }
-    .page-title   { animation: fadeUp 0.5s 0.22s both; }
-    .page-desc    { animation: fadeUp 0.5s 0.34s both; }
-
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .avatar-wrap { position: static; }
-      .avatar-frame { max-width: 200px; }
-      .social-strip { max-width: 200px; }
-    }
-    @media (max-width: 768px) {
-      nav { padding: 0 1.5rem; }
-      .hamburger { display: flex; }
-      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(7,14,13,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; padding: 2rem; gap: 1.8rem; border-bottom: 1px solid var(--border); }
-      .nav-links.open { display: flex; }
-      main { padding: 0 1.5rem; }
-      .page-header-inner { padding: 3rem 1.5rem 0; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="bg-glow"></div>
@@ -344,6 +19,8 @@
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="details.html">Details</a></li>
+    <li><a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank">Resume ↗</a></li>
   </ul>
 </nav>
 
@@ -351,7 +28,7 @@
   <div class="page-header-inner">
     <p class="page-eyebrow"> Profile</p>
     <h1 class="page-title">About <em>Darshan</em></h1>
-    <p class="page-desc">Electronics and Communication Engineering student passionate about Machine Learning, Wireless Communications, Python, and emerging technologies..</p>
+    <p class="page-desc">Electronics and Communication undergraduate (B.Tech ’27) who builds RAG pipelines, LLM apps and ML models, and likes turning ideas into AI that people can try.</p>
   </div>
   <div class="divider"></div>
 </div>
@@ -362,7 +39,6 @@
       <div class="avatar-wrap">
         <div class="avatar-frame">
           <img src="{{ url_for('static', filename='profile.jpg') }}"  alt="profile" style="width:100%;height:100%;object-fit:cover;" />
-
           </div>
           <div class="avatar-tag">
             <div class="avatar-tag-name">Darshan S L</div>
@@ -373,6 +49,7 @@
           <a href="https://github.com/darshan320" class="social-btn">GitHub</a>
           <a href="https://www.linkedin.com/in/darshan-sadashivanagouda-linganagoudra-220367311/" class="social-btn">LinkedIn</a>
           <a href="#" class="social-btn">Email</a>
+          <a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank" class="social-btn">Resume</a>
         </div>
       </div>
 
